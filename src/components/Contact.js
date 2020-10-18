@@ -5,34 +5,36 @@ class Contact extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      props.online,
+      online: this.props.status,
     };
   }
 
-
-
   render() {
-  return (
-    <div className='Contact'>
-      <img className='avatar' src={props.avatar} alt='Peter Palmer' />
+    return (
+      <div className='Contact'>
+        <img className='avatar' src={this.props.avatar} alt='Peter Palmer' />
 
-      <div>
-        <p className='name'>{props.name}</p>
-        <div className='status'>
-          <div className={props.online ? 'status-online' : 'status-offline'} />
-          <p className='status-text'>{props.online ? 'oneline' : 'offline'}</p>
-
-          <span
-          className={this.state.online ? 'online' : 'offline'}
-              onClick={event => {
-                const noffline = !this.state.online;
-                this.setState({ fonline: offline });
-              }}
-            >&#9733;</span>
+        <div>
+          <p className='name'>{this.props.name}</p>
+          <div
+            className='status'
+            onClick={(event) => {
+              this.setState({
+                online: this.state.online ? false : true,
+              });
+            }}
+          >
+            <div
+              className={this.state.online ? 'status-online' : 'status-offline'}
+            ></div>
+            <p className='status-text'>
+              {this.state.online ? 'online' : 'offline'}
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Contact;
